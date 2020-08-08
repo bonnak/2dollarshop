@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
 import { Button } from 'react-bootstrap';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   return (
@@ -14,5 +14,5 @@ export default function Home() {
       <Button variant="primary">Click Me</Button>
       </main>
     </div>
-  )
+  );
 }

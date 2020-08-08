@@ -4,15 +4,22 @@
         "es6": true,
         "node": true
     },
+    "plugins": ["react"],
     "extends": [
-        "airbnb-base"
+        "airbnb-base",
+        "plugin:react/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2018
+        "ecmaFeatures": {"jsx": true}
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     },
     "rules": {
         "semi": ["error", "always"],
@@ -21,6 +28,10 @@
         "max-len": ["error", { "code": 150 }],
         "no-underscore-dangle": "off",
         "radix": "off",
-        "global-require": "off"
+        "global-require": "off",
+
+        //JSX
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off"
     }
 }
