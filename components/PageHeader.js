@@ -1,4 +1,4 @@
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 
 export default function PageHeader() {
   return <header>
@@ -10,7 +10,7 @@ export default function PageHeader() {
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-light">Search</Button>
         </Form>
-        <Nav activeKey="/register">
+        <Nav>
           <Nav.Item>
             <Nav.Link href="/home">Deals</Nav.Link>
           </Nav.Item>
@@ -22,6 +22,34 @@ export default function PageHeader() {
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
+    </Navbar>
+    <Navbar expand="lg" variant="light" bg="light">
+      <Nav>
+        <Nav.Item>
+          <Nav.Link href="/#">Computing</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/#">Groceries</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/#">Health &amp; Beauty</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/computing">Home &amp; Garden</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/computing">Fashion &amp; Apparel</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/computing">Mobiles</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/computing">Books &amp; Magazines</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/computing">Internet</Nav.Link>
+        </Nav.Item>
+      </Nav>
     </Navbar>
   </header>;
 }
