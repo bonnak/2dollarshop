@@ -1,17 +1,20 @@
+import { Container, Row, Col } from 'react-bootstrap';
 import AppLayout from '../layouts/AppLayout';
-import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
+import BrowseCategories from '../components/BrowseCategories';
+import LatestDeals from '../components/LatestDeals';
 
 export default function Home() {
   return (
     <AppLayout>
-      <Card style={{ width: '18rem' }}>
-        <Card.Header>Featured</Card.Header>
-        <ListGroup variant="flush">
-          <ListGroup.Item>Cras justo odio</ListGroup.Item>
-          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
-      </Card>
+      <Container>
+        <Row>
+          <Col><BrowseCategories /></Col>
+          <Col>
+            <div>Carousal</div>
+            <LatestDeals />
+          </Col>
+        </Row>
+      </Container>
     </AppLayout>
   );
 }
