@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.nav-link {
+  display: block;
+  padding: -0.0rem 1rem;
+}

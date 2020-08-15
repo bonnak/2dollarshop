@@ -23,7 +23,7 @@ export default function PageHeader() {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-    <Navbar expand="lg" variant="light" bg="light">
+    <Navbar expand="lg" variant="light" bg="light" className="nav-link">
       <Nav>
         <Nav.Item>
           <Nav.Link href="/#">Computing</Nav.Link>
