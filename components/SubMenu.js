@@ -3,7 +3,7 @@ import { Container, Nav } from 'react-bootstrap';
 export default function SubMenu() {
   return <div className="app-submenu">
     <Container>
-      <Nav>
+      <Nav className="app-submenu__nav">
         <Nav.Item>
           <Nav.Link href="/#">Computing</Nav.Link>
         </Nav.Item>

@@ -1,4 +1,25 @@
 .app-submenu {
-	padding: 1rem 0;
-	border-bottom: solid 1px #ccc;
+	padding: 0rem 0;
+    border-bottom: solid 1px #ccc;
+    margin-top: 0px;
+    height: 24px;
+    background-color: #E5E5E5;
 }
+
+.app-submenu__nav {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+  }
+  
+  .app-submenu__nav a {
+	display: block;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+  }
+  
+  .app-submenu__nav a:hover {
+	background-color: #C4C4C4;
+  }
