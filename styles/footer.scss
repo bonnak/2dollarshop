@@ -1,0 +1,42 @@
+.app-footer {
+	padding: 0rem 0;
+    border-bottom: solid 1px #ccc;
+    margin-top: 0px;
+    height: 140px;
+    background-color: #3C9DF8;
+    color: white;
+}
+
+.app-footer__nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+      
+.app-footer__nav li {
+    float: left;
+}
+      
+.app-footer__nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+      
+.app-footer__nav li a:hover {
+    color: rgb(139, 139, 139);
+}
+
+h5 {
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.app-footer__gototop {
+    background-color: #E5E5E5;
+    text-align: center;
+    margin-top: 15px;
+}

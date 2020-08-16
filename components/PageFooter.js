@@ -1,18 +1,27 @@
-import { Container } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 
 export default function PageFooter() {
-  return <footer>
+  return <div>
+    <div className="app-footer__gototop">
+      <Button variant="link">Go to Top</Button>
+    </div>
+    <div className="app-footer">
     <Container>
-      <div>
+      <h5>Two-Dollars.com.au</h5>
+      <div className="app-footer__nav">
         <ul>
-          <li>About</li>
-          <li>Contact Us</li>
-          <li>Advertises</li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/advertise">Advertised</a></li>
+          <li><a href="/term">Term of Use</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/mobile">Mobile Apps</a></li>
         </ul>
       </div>
       <div className="text-center">
         <span className="text-muted">© Copyright 2021 Two-Dollars.com.au ABN:</span>
       </div>
-    </Container>
-  </footer>;
+  </Container>
+  </div>
+    </div>
 }
