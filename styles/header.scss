@@ -2,6 +2,17 @@
   background-color: #3C9DF8;
   //height: 200px;
   //width: 100%;
+
+  #nav-bar-right {
+    display: flex;
+    flex-basis: 0%;
+    flex-grow: 0;
+    
+    .nav-item {
+      white-space: nowrap;
+
+    }
+  }
 }
 
 .nav-link {
