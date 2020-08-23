@@ -15,4 +15,15 @@
 .browse-category__row2 {
     background-color: #E5E5E5;
     margin-top: 27px;
+    color: black;
+}
+
+.browse-category__row2 a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+      
+.browse-category__row2 a:hover {
+    color: #3C9DF8;
 }
