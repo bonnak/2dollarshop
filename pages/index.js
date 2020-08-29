@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import AppLayout from '../layouts/AppLayout';
 import BrowseCategories from '../components/BrowseCategories';
 import LatestDeals from '../components/LatestDeals';
@@ -8,13 +8,13 @@ export default function Home() {
   return (
     <AppLayout>
       <Container>
-        <Row className="mt-4">
-          <Col sm={3}><BrowseCategories /></Col>
-          <Col sm={8}>
+        <div className="mt-2 d-flex">
+          <div className="mr-2"><BrowseCategories /></div>
+          <div className="flex-grow-1">
             <MainCarousel />
             <LatestDeals />
-          </Col>
-        </Row>
+          </div>
+        </div>
       </Container>
     </AppLayout>
   );
