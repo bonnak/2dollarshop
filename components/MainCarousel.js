@@ -1,7 +1,7 @@
 import { Carousel } from 'react-bootstrap';
 
-export default function AppCarousel() {
-  return <div className="app-carousel">
+export default function MainCarousel() {
+  return <div className="main-carousel">
       <Carousel>
         <Carousel.Item>
           <img

@@ -1,0 +1,12 @@
+.main-carousel{
+  background-color: cadetblue;
+  width: 100%;
+
+  .carousel-item {
+    height: 260px;
+
+    img {
+      object-fit: contain;
+    }
+  }
+}
