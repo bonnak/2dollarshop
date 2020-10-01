@@ -1,15 +1,24 @@
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 
-@import "header";
-@import "menu";
-@import "footer";
-@import "global-search";
-@import "browse-categorys";
-@import "main-carousel";
-@import "latest-deals";
+@import 'header';
+@import 'menu';
+@import 'footer';
+@import 'global-search';
+@import 'browse-categorys';
+@import 'main-carousel';
+@import 'latest-deals';
+@import 'signin';
+
+// body {
+//   font-size: 13px;
+//   line-height: 19px;
+//   font-family: Arial,sans-serif;
+// }
 
 body {
-  font-size: 13px;
-  line-height: 19px;
-  font-family: Arial,sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
 }

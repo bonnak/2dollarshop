@@ -6,6 +6,7 @@ import MainCarousel from '../components/MainCarousel';
 
 const latestDeals = [
   {
+    id: 1,
     title: 'Free 14 LinkedIn learning courses', 
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", 
     createdAt: '2020-09-01', 
@@ -16,6 +17,7 @@ const latestDeals = [
     image: 'https://unsplash.com/photos/XzERvOnfH7M'
   },
   {
+    id: 2,
     title: 'Free 14 LinkedIn learning courses', 
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", 
     createdAt: '2020-09-01', 
@@ -26,6 +28,7 @@ const latestDeals = [
     image: 'https://unsplash.com/photos/XzERvOnfH7M'
   },
   {
+    id: 3,
     title: 'Free 14 LinkedIn learning courses', 
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", 
     createdAt: '2020-09-01', 

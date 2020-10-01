@@ -1,12 +1,12 @@
 import { Carousel } from 'react-bootstrap';
 
 export default function MainCarousel() {
-  return <div className="main-carousel">
+  return (
+    <div className="main-carousel">
       <Carousel>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            // src="/holders/holder.js/800x400?text=First slide&bg=373940"
             src="/carousel1.jpeg"
             alt="First slide"
           />
@@ -18,7 +18,6 @@ export default function MainCarousel() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            // src="/holders/holder.js/800x400?text=Second slide&bg=282c34"
             src="/carousel2.jpg"
             alt="Third slide"
           />
@@ -31,16 +30,18 @@ export default function MainCarousel() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            // src="/holders/holder.js/800x400?text=Third slide&bg=20232a"
             src="/carousel3.jpg"
             alt="Third slide"
           />
 
           <Carousel.Caption>
             <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-  </div>
+    </div>
+  );
 }
