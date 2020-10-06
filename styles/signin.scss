@@ -11,12 +11,18 @@
 }
 
 .form-check-input {
-  /* position: absolute; */
   margin-top: 0.3rem;
   margin-left: -1.25rem;
 }
 
-.btn-block {
+.signin__new-users {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn-block__signin {
   display: block;
   width: 100%;
   font-size: large;

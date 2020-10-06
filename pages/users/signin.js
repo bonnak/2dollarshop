@@ -28,13 +28,14 @@ export default function signin() {
             </Form.Group>
 
             <Form.Group>
-              <Col className="btn-block">
+              <Col className="btn-block__signin">
                 <Button variant="primary" size="lg" type="submit" block>
                   Sign in
                 </Button>
               </Col>
             </Form.Group>
             <hr />
+            <p className="signin__new-users">New users</p>
             <Form.Group>
               <Col className="btn-block__new-account">
                 <Button variant="primary" size="lg" type="submit" block>
