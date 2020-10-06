@@ -1,37 +1,42 @@
-.signin {
+.signup {
   width: 500px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.signin h2 {
+.signup h2 {
   margin: 15px;
   padding: 0px;
   margin-bottom: 30px;
 }
 
-.form-check-input {
-  margin-top: 0.3rem;
-  margin-left: -1.25rem;
+.signup__password-policy {
+  color: red;
+  font-style: italic;
+  font-size: 12px;
 }
 
-.signin__new-users {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 20px;
-  text-align: center;
+.signup__user-policy {
+  font-style: italic;
+  font-size: 12px;
 }
 
 .btn-block {
   display: block;
   width: 100%;
   font-size: large;
+  margin-bottom: 14px;
 }
 
 .btn-primary {
   color: #fff;
   background-color: #3c9df8;
   border-color: #3c9df8;
+}
+
+.signup__already-have-account {
+  padding: 10px;
+  text-align: center;
 }
 
 .form-control {
