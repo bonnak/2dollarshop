@@ -1,24 +1,22 @@
 import AppLayout from '../../layouts/AppLayout';
-import { Container, Form, Row, Col, Button } from 'react-bootstrap';
+import { Container, Form, Col, Button } from 'react-bootstrap';
 
 export default function signin() {
   return (
     <AppLayout>
-      <Container>
+      <Container className="signin">
         <div>
           <h2>Sign-in</h2>
         </div>
-        <div className="signin">
+        <div>
           <Form>
             <Form.Group>
-              <Form.Label htmlFor="inputPassword5">Email</Form.Label>
               <Col sm={10}>
-                <Form.Control type="email" placeholder="Email" />
+                <Form.Control type="email" placeholder="Username | Email" />
               </Col>
             </Form.Group>
 
             <Form.Group>
-              <Form.Label htmlFor="inputPassword5">Password</Form.Label>
               <Col sm={10}>
                 <Form.Control type="password" placeholder="Password" />
               </Col>
@@ -33,6 +31,14 @@ export default function signin() {
               <Col className="btn-block">
                 <Button variant="primary" size="lg" type="submit" block>
                   Sign in
+                </Button>
+              </Col>
+            </Form.Group>
+            <hr />
+            <Form.Group>
+              <Col className="btn-block__new-account">
+                <Button variant="primary" size="lg" type="submit" block>
+                  Create your new account
                 </Button>
               </Col>
             </Form.Group>
