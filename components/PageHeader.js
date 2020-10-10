@@ -5,7 +5,12 @@ export default function PageHeader() {
   return (
     <header className="app-header">
       <Container>
-        <Navbar collapseOnSelect expand="lg" variant="dark">
+        <Navbar
+          collapseOnSelect
+          expand="lg"
+          variant="dark"
+          className="app-main-nav"
+        >
           <Navbar.Brand href="#home">Two-Dollars.com</Navbar.Brand>
           <div className="flex-grow-1">
             <GlobalSearch />
