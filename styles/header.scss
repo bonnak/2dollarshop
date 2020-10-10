@@ -1,5 +1,5 @@
 .app-header {
-  background-color: #3c9df8;
+  background-color: $primary;
   //height: 200px;
   //width: 100%;
 
@@ -8,8 +8,33 @@
     flex-basis: 0%;
     flex-grow: 0;
 
-    .nav-item {
-      white-space: nowrap;
+    .navbar-nav {
+      .nav-item {
+        white-space: nowrap;
+        padding: 0 10px;
+
+        &.show {
+          border-left: solid 1px #fff !important;
+          border-right: solid 1px #fff !important;
+        }
+      }
+
+      .dropdown-menu {
+        background-color: $primary;
+        padding: 0;
+        border: solid 1px #fff;
+      }
+
+      .dropdown-item {
+        color: #fff;
+        padding-left: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        &:hover {
+          background-color: hsl(217, 93%, 60%);
+        }
+      }
     }
   }
 }
