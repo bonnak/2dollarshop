@@ -5,7 +5,7 @@ export default function signup() {
   return (
     <AppLayout>
       <Container className="signup">
-        <div>
+        <div className="signup__new-account">
           <h2>Create new account</h2>
         </div>
         <div>
