@@ -1,0 +1,49 @@
+.product {
+  border: none;
+  padding: 15px 0;
+
+  &__sections {
+    display: flex;
+  }
+
+  &__section-1 {
+    padding: 0 10px;
+  }
+
+  &__section-2 {
+    flex-grow: 1;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__title {
+    font-size: 1.3rem;
+  }
+
+  &__username {
+    font-size: 0.875rem;
+  }
+
+  &__posted-at {
+    font-size: 0.875rem;
+    color: #ccc;
+    margin-left: 5px;
+  }
+
+  &__tags {
+    display: inline-block;
+  }
+}

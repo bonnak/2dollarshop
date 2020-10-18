@@ -39,6 +39,11 @@
   text-align: center;
 }
 
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  width: 99%;
+}
+
 .form-control {
   display: block;
   width: 120%;

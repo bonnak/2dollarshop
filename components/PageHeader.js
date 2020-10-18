@@ -11,7 +11,7 @@ export default function PageHeader() {
           variant="dark"
           className="app-main-nav"
         >
-          <Navbar.Brand href="#home">Two-Dollars.com</Navbar.Brand>
+          <Navbar.Brand href="/">Two-Dollars.com</Navbar.Brand>
           <div className="flex-grow-1">
             <GlobalSearch />
           </div>
@@ -19,10 +19,16 @@ export default function PageHeader() {
           <Navbar.Collapse id="nav-bar-right">
             <Nav>
               <NavDropdown title="Deals" id="collasible-nav-dropdown dark">
-                <NavDropdown.Item href="#new-deals">New Deals</NavDropdown.Item>
-                <NavDropdown.Item href="#freebie">Freebie</NavDropdown.Item>
-                <NavDropdown.Item href="#stores">Stores</NavDropdown.Item>
-                <NavDropdown.Item href="#popular-deals">
+                <NavDropdown.Item href="/products/deals/new-deals">
+                  New Deals
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/products/deals/freebie">
+                  Freebie
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/products/deals/stores">
+                  Stores
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/products/deals/popular-deals">
                   Popular Deals
                 </NavDropdown.Item>
               </NavDropdown>
