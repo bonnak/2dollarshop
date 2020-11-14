@@ -8,7 +8,18 @@ const { config } = require('@bonnak/toolset');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      models.User.hasMany(models.RefreshToken, { as: 'tokens' });
+      models.User.hasMany(models.RefreshToken, { as: 'refreshTokens' });
+    }
+
+    static async register({ email, password }) {
+      const user = await super.create({
+        email,
+        password,
+        confirmed: false,
+        confirmCode: this.generateConfirmCode(),
+      });
+
+      return user;
     }
 
     validatePassword(password) {
@@ -68,7 +79,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
-      username: {
+      email: {
         unique: true,
         allowNull: false,
         type: DataTypes.STRING,
@@ -92,8 +103,9 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
         type: DataTypes.BOOLEAN,
       },
+      confirmed: DataTypes.BOOLEAN,
+      confirmCode: DataTypes.STRING,
       photo: DataTypes.STRING,
-      isRoot: DataTypes.BOOLEAN,
     },
     {
       sequelize,

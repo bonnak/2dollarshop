@@ -4,7 +4,7 @@ const { User } = require('../models').models;
 
 module.exports = (router) => {
   router.post(
-    '/users/register',
+    '/auth/register',
     validateRequest([
       body('email')
         .notEmpty().withMessage('Required')
@@ -27,7 +27,7 @@ module.exports = (router) => {
       }),
     ]),
     async (req, res) => {
-      const { email, password } = req.body;
+      const { email, password } = req.body;console.log(email, password)
 
       const user = await User.register({ email, password });
 

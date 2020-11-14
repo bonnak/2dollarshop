@@ -1,18 +1,20 @@
-const { requireAuth, guardEnum } = require('../middleware/authenticate');
-const { AuthToken } = require('../models').models;
+const { authenticated } = require('../middleware/authenticate');
+const { RefreshToken, User } = require('../models').models;
 
 module.exports = (router) => {
   router.post(
     '/auth/signout',
-    requireAuth(guardEnum.CONSUMER, guardEnum.BACK_OFFICE),
+    authenticated,
     async (req, res) => {
-      req.session = null;
-
-      const authToken = await AuthToken.findOne({
-        where: { token: req.jwtToken },
+      const user = await User.findByPk(req.user.id);
+      const refreshToken = await RefreshToken.findOne({
+        where: {
+          userId: user.id,
+          revoked: false,
+        },
       });
 
-      await authToken.revoke();
+      await refreshToken.revoke();
 
       return res.end();
     },

@@ -8,10 +8,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ext .js --ignore-path .gitignore . --fix"
+    "lint": "eslint --ext .js --ignore-path .gitignore . --fix",
+    "sequelize": "sequelize"
   },
   "dependencies": {
-    "@bonnak/toolset": "^1.0.30",
+    "@bonnak/toolset": "^1.0.35",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.2",

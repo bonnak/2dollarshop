@@ -12,9 +12,22 @@ module.exports = {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    name: {
+      type: DataTypes.STRING,
+    },
     disabled: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    },
+    confirmed: {
+      defaultValue: false,
+      type: DataTypes.BOOLEAN,
+    },
+    confirmCode: {
+      type: DataTypes.STRING,
+    },
+    photo: {
+      type: DataTypes.STRING,
     },
     createdAt: {
       allowNull: false,
