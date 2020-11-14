@@ -4,20 +4,18 @@ const { User } = require('../models').models;
 
 module.exports = (router) => {
   router.post(
-    '/auth/signin',
+    '/users/signin',
     validateRequest([
-      body('username').notEmpty().withMessage('Required'),
+      body('email').notEmpty().withMessage('Required'),
       body('password').notEmpty().withMessage('Required'),
     ]),
     async (req, res) => {
-      const { username, password } = req.body;
+      const { email, password } = req.body;
 
-      const user = await User.attemptToAuthenticate({ username, password });
-      const token = await user.generateAccessToken();
+      const user = await User.attemptToAuthenticate({ email, password });
+      const accessToken = await user.generateAccessToken();
 
-      req.session = { jwt: token };
-
-      return res.json({ token });
+      return res.json({ accessToken });
     },
   );
 };

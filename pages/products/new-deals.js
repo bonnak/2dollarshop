@@ -1,4 +1,4 @@
-import AppLayout from '../../../layouts/AppLayout';
+import AppLayout from '../../layouts/AppLayout';
 import { Container } from 'react-bootstrap';
 
 export default function NewDeals() {

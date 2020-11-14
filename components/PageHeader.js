@@ -19,16 +19,16 @@ export default function PageHeader() {
           <Navbar.Collapse id="nav-bar-right">
             <Nav>
               <NavDropdown title="Deals" id="collasible-nav-dropdown dark">
-                <NavDropdown.Item href="/products/deals/new-deals">
+                <NavDropdown.Item href="/products/new-deals">
                   New Deals
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/products/deals/freebie">
+                <NavDropdown.Item href="/products/freebie">
                   Freebie
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/products/deals/stores">
+                <NavDropdown.Item href="/products/stores">
                   Stores
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/products/deals/popular-deals">
+                <NavDropdown.Item href="/products/popular-deals">
                   Popular Deals
                 </NavDropdown.Item>
               </NavDropdown>

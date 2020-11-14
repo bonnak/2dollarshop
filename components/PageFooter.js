@@ -12,10 +12,10 @@ export default function PageFooter() {
         <ul>
           <li><a href="/about">About Us</a></li>
           <li><a href="/contact">Contact</a></li>
-          <li><a href="/advertise">Advertised</a></li>
-          <li><a href="/term">Term of Use</a></li>
-          <li><a href="/privacy">Privacy Policy</a></li>
-          <li><a href="/mobile">Mobile Apps</a></li>
+          <li><a href="/advertised">Advertised</a></li>
+          <li><a href="/term-of-use">Term of Use</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/mobile-apps">Mobile Apps</a></li>
         </ul>
       </div>
       <div className="text-center">
