@@ -1,5 +1,6 @@
 const { body } = require('express-validator');
-const { validateRequest } = require('@bonnak/toolset');
+const { validateRequest, config } = require('@bonnak/toolset');
+const mailer = require('../transport/mailer');
 const { User } = require('../models').models;
 
 module.exports = (router) => {
@@ -27,9 +28,19 @@ module.exports = (router) => {
       }),
     ]),
     async (req, res) => {
-      const { email, password } = req.body;console.log(email, password)
+      const { email, password } = req.body;
 
       const user = await User.register({ email, password });
+
+      mailer.send({
+        from: '"2 dollar shop" <2dollarshop@mail.com>',
+        to: req.body.email,
+        subject: 'Confirm register',
+        text: `
+          Click this link to confirm your registration 
+          ${config.get('appUrl')}/auth/confirm-register/${user.confirmCode}
+        `,
+      });
 
       return res.json(user);
     },

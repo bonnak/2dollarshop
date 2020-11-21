@@ -30,9 +30,11 @@
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
+    "ms": "^2.1.2",
     "mysql2": "^2.2.5",
     "next": "9.5.1",
     "node-nats-streaming": "^0.3.2",
+    "nodemailer": "^6.4.16",
     "react": "16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-dom": "16.13.1",
@@ -47,6 +49,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.21.2",
+    "mailtrap": "^2.0.2",
     "nodemon": "^2.0.4"
   }
 }
