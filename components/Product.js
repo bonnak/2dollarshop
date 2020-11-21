@@ -1,7 +1,9 @@
 import { Card } from 'react-bootstrap';
 import Avatar from './Avatar';
 
-export default function Product ({ title, description, image, createdAt, expiredAt, username, avatar, tags }) {
+export default function Product({
+  title, description, image, createdAt, expiredAt, username, avatar, tags,
+}) {
   return <Card className="product" >
     <div className="product__sections">
       <div className="product__section-1">
@@ -18,13 +20,11 @@ export default function Product ({ title, description, image, createdAt, expired
         <p className="product__description">{description}</p>
         <div>
           <div className="product__tags">
-            {tags.map((tag, index) => {
-              return <span key={index}>{tag}</span>
-            })}
+            {tags.map((tag, index) => <span key={index}>{tag}</span>)}
           </div>
           <span className="product__expired-at">{expiredAt}</span>
         </div>
       </div>
     </div>
-  </Card>
+  </Card>;
 }

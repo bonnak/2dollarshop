@@ -1,5 +1,7 @@
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import GlobalSearch from '../components/GlobalSearch';
+import {
+  Navbar, Nav, Container, NavDropdown,
+} from 'react-bootstrap';
+import GlobalSearch from './GlobalSearch';
 
 export default function PageHeader() {
   return (

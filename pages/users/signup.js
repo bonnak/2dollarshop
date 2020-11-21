@@ -1,5 +1,7 @@
+import {
+  Container, Form, Col, Button,
+} from 'react-bootstrap';
 import AppLayout from '../../layouts/AppLayout';
-import { Container, Form, Col, Button } from 'react-bootstrap';
 
 export default function signup() {
   return (

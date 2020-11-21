@@ -30,5 +30,5 @@ export default function SubMenu() {
         </Nav.Item>
       </Nav>
     </Container>
-  </div>
+  </div>;
 }

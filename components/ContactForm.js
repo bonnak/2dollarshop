@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Form, Col, InputGroup, Button } from 'react-bootstrap';
+import {
+  Form, Col, InputGroup, Button,
+} from 'react-bootstrap';
 
 export default function ContactForm() {
   const [validated, setValidated] = useState(false);
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-    event.preventDefault();
-    event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
     }
     setValidated(true);
   };
@@ -84,5 +86,5 @@ export default function ContactForm() {
       </Form.Group>
     <Button type="submit">Submit form</Button>
   </Form>
-);
-};
+  );
+}

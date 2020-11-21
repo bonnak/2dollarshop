@@ -1,5 +1,5 @@
-import AppLayout from '../layouts/AppLayout';
 import { Container } from 'react-bootstrap';
+import AppLayout from '../layouts/AppLayout';
 import ContactForm from '../components/ContactForm';
 
 export default function Contact() {

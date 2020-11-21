@@ -23,7 +23,7 @@ const categories = [
   'Toys & Kids',
   'Travel',
   'Other ...',
-]
+];
 
 export default function BrowseCategories() {
   return <div className="browse-category">
@@ -33,16 +33,14 @@ export default function BrowseCategories() {
     <div className="browse-category__row2">
       <Nav defaultActiveKey="/home" className="flex-column">
         <Nav.Link href="/home"></Nav.Link>
-        { categories.map((category, index) => {
-          return <Nav.Item key={index}>
+        { categories.map((category, index) => <Nav.Item key={index}>
             <Link
-              href={{ pathname: '/catalog/products', query: { category }}}
+              href={{ pathname: '/catalog/products', query: { category } }}
             >
               <a className="nav-link">{category}</a>
             </Link>
-          </Nav.Item>
-        })}
+          </Nav.Item>)}
       </Nav>
     </div>
-  </div>
+  </div>;
 }

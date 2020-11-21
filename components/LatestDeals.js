@@ -1,7 +1,9 @@
 import { Card } from 'react-bootstrap';
 import Avatar from './Avatar';
 
-function Deal ({ title, description, image, createdAt, expiredAt, username, avatar, tags }) {
+function Deal({
+  title, description, image, createdAt, expiredAt, username, avatar, tags,
+}) {
   return <Card className="deal" >
     <div className="deal__sections">
       <div className="deal__section-1">
@@ -18,22 +20,18 @@ function Deal ({ title, description, image, createdAt, expiredAt, username, avat
         <p className="deal__description">{description}</p>
         <div>
           <div className="deal__tags">
-            {tags.map((tag, index) => {
-              return <span key={index}>{tag}</span>
-            })}
+            {tags.map((tag, index) => <span key={index}>{tag}</span>)}
           </div>
           <span className="deal__expired-at">{expiredAt}</span>
         </div>
       </div>
     </div>
-  </Card>
+  </Card>;
 }
 
 export default function LatestDeals({ items }) {
   return <div className="latest-deals mt-2">
     <h3>Today</h3>
-    { items.map(item => {
-      return <Deal key={item.id} { ...item } />
-    }) }
-  </div>
+    { items.map((item) => <Deal key={item.id} { ...item } />) }
+  </div>;
 }
