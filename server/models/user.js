@@ -22,6 +22,21 @@ module.exports = (sequelize, DataTypes) => {
       return user;
     }
 
+    static async confirmRegister({ confirmCode }) {
+      const user = await super.findOne({
+        where: { confirmCode, confirmed: false }
+      });
+
+      if(user === null) {
+        throw new Error('Invalid confirmation code');
+      }
+
+      return user.update({
+        confirmed: true,
+        confirmCode: null
+      });
+    }
+
     validatePassword(password) {
       return bcrypt.compare(password, this.password());
     }

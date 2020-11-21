@@ -38,11 +38,20 @@ module.exports = (router) => {
         subject: 'Confirm register',
         text: `
           Click this link to confirm your registration 
-          ${config.get('appUrl')}/auth/confirm-register/${user.confirmCode}
+          ${config.get('appUrl')}/api/auth/confirm-register/${user.confirmCode}
         `,
       });
 
       return res.json(user);
     },
+  );
+
+  router.get(
+    '/auth/confirm-register/:confirmCode',
+    async (req, res) => {
+      await User.confirmRegister({ confirmCode: req.params.confirmCode });
+
+      res.json({ message: 'Confirm register successfully' });
+    }
   );
 };
