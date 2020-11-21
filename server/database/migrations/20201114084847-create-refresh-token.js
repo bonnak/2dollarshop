@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('RefeshTokens', {
+    await queryInterface.createTable('RefreshTokens', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -33,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('RefeshTokens');
+    await queryInterface.dropTable('RefreshTokens');
   },
 };

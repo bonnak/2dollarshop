@@ -24,16 +24,16 @@ module.exports = (sequelize, DataTypes) => {
 
     static async confirmRegister({ confirmCode }) {
       const user = await super.findOne({
-        where: { confirmCode, confirmed: false }
+        where: { confirmCode, confirmed: false },
       });
 
-      if(user === null) {
+      if (user === null) {
         throw new Error('Invalid confirmation code');
       }
 
       return user.update({
         confirmed: true,
-        confirmCode: null
+        confirmCode: null,
       });
     }
 
@@ -48,13 +48,13 @@ module.exports = (sequelize, DataTypes) => {
         { expiresIn: '365d', subject: this.id },
       );
 
-      await sequelize.models.RefreshToken.create({
+      const refreshToken = await sequelize.models.RefreshToken.create({
         userId: this.id,
         token: randomBytes(100).toString('hex'),
         expiredAt: ms('365d'),
       });
 
-      return accessToken;
+      return { accessToken, refreshToken: refreshToken.token };
     }
 
     static async attemptToAuthenticate({ email, password }) {
