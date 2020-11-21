@@ -1,7 +1,7 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class RefreshToken extends Model {
+  class AccessToken extends Model {
     revoke() {
       return this.update({ revoked: true });
     }
@@ -9,9 +9,20 @@ module.exports = (sequelize, DataTypes) => {
     get revoked() {
       return !!this.getDataValue('revoked');
     }
+
+    static async validate(token) {
+      const count = await super.count({
+        where: {
+          token,
+          revoked: false,
+        },
+      });
+
+      return !!count;
+    }
   }
 
-  RefreshToken.init(
+  AccessToken.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -21,12 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.UUID,
       token: DataTypes.STRING,
       revoked: DataTypes.BOOLEAN,
-      expiredAt: DataTypes.DATE,
     },
     {
       sequelize,
     },
   );
 
-  return RefreshToken;
+  return AccessToken;
 };

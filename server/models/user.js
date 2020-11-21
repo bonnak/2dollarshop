@@ -11,10 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       models.User.hasMany(models.RefreshToken, { as: 'refreshTokens' });
     }
 
-    static async register({ email, password }) {
+    static async register({ email, password, name }) {
       const user = await super.create({
         email,
         password,
+        name,
         confirmed: false,
         confirmCode: this.generateConfirmCode(),
       });
@@ -42,11 +43,16 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     async generateAccessToken() {
-      const accessToken = jwt.sign(
+      const token = jwt.sign(
         {},
         config.get('auth.jwt.secret'),
         { expiresIn: '365d', subject: this.id },
       );
+
+      await sequelize.models.AccessToken.create({
+        userId: this.id,
+        token,
+      });
 
       const refreshToken = await sequelize.models.RefreshToken.create({
         userId: this.id,
@@ -54,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         expiredAt: ms('365d'),
       });
 
-      return { accessToken, refreshToken: refreshToken.token };
+      return { accessToken: token, refreshToken: refreshToken.token };
     }
 
     static async attemptToAuthenticate({ email, password }) {
@@ -62,6 +68,7 @@ module.exports = (sequelize, DataTypes) => {
         where: {
           email,
           disabled: false,
+          confirmed: true,
         },
       });
 
@@ -83,6 +90,17 @@ module.exports = (sequelize, DataTypes) => {
       const max = 100000;
 
       return min + Math.floor((max - min) * Math.random());
+    }
+
+    async revokeAccessToken(token) {
+      const accessToken = await sequelize.models.AccessToken.findOne({
+        where: {
+          token,
+          userId: this.getDataValue('id'),
+        },
+      });
+
+      return accessToken.revoke();
     }
   }
 

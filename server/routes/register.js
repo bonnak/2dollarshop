@@ -2,6 +2,7 @@ const { body } = require('express-validator');
 const { validateRequest, config } = require('@bonnak/toolset');
 const mailer = require('../transport/mailer');
 const { User } = require('../models').models;
+const { requireAuth } = require('../middleware/authenticate');
 
 module.exports = (router) => {
   router.post(
@@ -70,6 +71,16 @@ module.exports = (router) => {
       const { accessToken, refreshToken } = await user.generateAccessToken();
 
       res.json({ accessToken, refreshToken });
+    },
+  );
+
+  router.post(
+    '/auth/logout',
+    requireAuth(),
+    async (req, res) => {
+      await req.auth.user.revokeAccessToken(req.auth.accessToken);
+
+      res.json({ message: 'Token revoked' });
     },
   );
 };

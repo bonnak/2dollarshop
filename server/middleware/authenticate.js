@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { config, NotAllowError } = require('@bonnak/toolset');
-const { User } = require('../models').models;
+const { User, AccessToken } = require('../models').models;
 
 const fnUnAuthorizedReqResponse = (res) => res.status(401).json({
   message: 'Unauthorized request',
@@ -34,11 +34,13 @@ const requireAuth = () => async (req, res, next) => {
 
     if (user === null) return fnUnAuthorizedReqResponse(res);
 
-    req.user = user;
+    if (!await AccessToken.validate(token)) return fnUnAuthorizedReqResponse(res);
+
+    req.auth = { user, accessToken: token };
     next();
   } catch (err) {
     fnUnAuthorizedReqResponse(res);
   }
 };
 
-exports.requireAuth = requireAuth();
+exports.requireAuth = requireAuth;
