@@ -55,32 +55,4 @@ module.exports = (router) => {
       res.json({ message: 'Confirm register successfully' });
     },
   );
-
-  router.post(
-    '/auth/login',
-    validateRequest([
-      body('email').notEmpty().withMessage('Email required'),
-      body('password').notEmpty().withMessage('Password required'),
-    ]),
-    async (req, res) => {
-      const user = await User.attemptToAuthenticate({
-        email: req.body.email,
-        password: req.body.password,
-      });
-
-      const { accessToken, refreshToken } = await user.generateAccessToken();
-
-      res.json({ accessToken, refreshToken });
-    },
-  );
-
-  router.post(
-    '/auth/logout',
-    requireAuth(),
-    async (req, res) => {
-      await req.auth.user.revokeAccessToken(req.auth.accessToken);
-
-      res.json({ message: 'Token revoked' });
-    },
-  );
 };
