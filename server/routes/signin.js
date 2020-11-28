@@ -13,9 +13,9 @@ module.exports = (router) => {
       const { email, password } = req.body;
 
       const user = await User.attemptToAuthenticate({ email, password });
-      const accessToken = await user.generateAccessToken();
+      const { accessToken, refreshToken } = await user.generateAccessToken();
 
-      return res.json({ accessToken });
+      return res.json({ accessToken, refreshToken });
     },
   );
 };

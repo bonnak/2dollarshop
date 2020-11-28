@@ -14,7 +14,7 @@ export default function signup() {
   const [payload, setPayload] = useState({
     name: '', email: '', password: '', passwordConfirmation: ''
   });
-  const register = useCallback(async (e) => {console.log(payload)
+  const register = useCallback(async (e) => {
     e.preventDefault();
     setErrMessage(null);
     setValidationErrors(new Errors);
@@ -27,7 +27,7 @@ export default function signup() {
       const _err = err.response.data;
 
       if(_err.errors) setValidationErrors(new Errors(_err.errors));
-      else setErrMessage(err.message);
+      else setErrMessage(_err.message);
     }
   }, [payload])
 

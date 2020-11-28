@@ -49,11 +49,6 @@ module.exports = (sequelize, DataTypes) => {
         { expiresIn: '365d', subject: this.id },
       );
 
-      await sequelize.models.AccessToken.create({
-        userId: this.id,
-        token,
-      });
-
       const refreshToken = await sequelize.models.RefreshToken.create({
         userId: this.id,
         token: randomBytes(100).toString('hex'),

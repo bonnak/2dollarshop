@@ -1,9 +1,34 @@
+import { useCallback, useState } from 'react';
+import { useRouter } from 'next/router'
+import axios from 'axios';
+import { Errors } from 'form-backend-validation';
 import {
-  Container, Form, Col, Button,
+  Container, Form, Col, Button, Alert
 } from 'react-bootstrap';
 import AppLayout from '../../layouts/AppLayout';
 
 export default function signin() {
+  const router = useRouter();
+  const [errMessage, setErrMessage] = useState();
+  const [validationErrors, setValidationErrors] = useState(new Errors);
+  const [payload, setPayload] = useState({ email: '', password: '' });
+  const signIn = useCallback(async (e) => {
+    e.preventDefault();
+    setErrMessage(null);
+    setValidationErrors(new Errors);
+
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`, payload);
+
+      router.push('/');
+    } catch(err) {
+      const _err = err.response.data;
+
+      if(_err.errors) setValidationErrors(new Errors(_err.errors));
+      else setErrMessage(_err.message);
+    }
+  }, [payload]);
+
   return (
     <AppLayout>
       <Container className="signin">
@@ -11,16 +36,33 @@ export default function signin() {
           <h2>Sign-in</h2>
         </div>
         <div>
+          { errMessage && <Alert variant="danger">{errMessage}</Alert> }
           <Form>
             <Form.Group>
               <Col sm={10}>
-                <Form.Control type="email" placeholder="Username | Email" />
+                <Form.Control 
+                  type="email" 
+                  placeholder="Username | Email"
+                  value={payload.email}
+                  onChange={e => setPayload({ ...payload, email: e.target.value })}/>
+                { 
+                  validationErrors.has('email') && 
+                  <span className="text-sm text-danger">{validationErrors.first('email')}</span>
+                }
               </Col>
             </Form.Group>
 
             <Form.Group>
               <Col sm={10}>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control 
+                  type="password" 
+                  placeholder="Password"
+                  value={payload.password}
+                  onChange={e => setPayload({ ...payload, password: e.target.value })}/>
+                { 
+                  validationErrors.has('password') && 
+                  <span className="text-sm text-danger">{validationErrors.first('password')}</span>
+                }
               </Col>
             </Form.Group>
             <Form.Group>
@@ -31,7 +73,7 @@ export default function signin() {
 
             <Form.Group>
               <Col className="btn-block__signin">
-                <Button variant="primary" size="lg" type="submit" block>
+                <Button variant="primary" size="lg" type="submit" onClick={signIn}>
                   Sign in
                 </Button>
               </Col>
