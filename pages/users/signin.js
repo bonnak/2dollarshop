@@ -1,6 +1,5 @@
-import { useCallback, useState } from 'react';
-import { useRouter } from 'next/router'
-import axios from 'axios';
+import { useCallback, useState , useContext } from 'react';
+import { useRouter } from 'next/router';
 import { Errors } from 'form-backend-validation';
 import {
   Container, Form, Col, Button, Alert
@@ -12,13 +11,14 @@ export default function signin() {
   const [errMessage, setErrMessage] = useState();
   const [validationErrors, setValidationErrors] = useState(new Errors);
   const [payload, setPayload] = useState({ email: '', password: '' });
+  const {signin} = useContext(AuthContext);
   const signIn = useCallback(async (e) => {
     e.preventDefault();
     setErrMessage(null);
     setValidationErrors(new Errors);
 
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`, payload);
+      await signin(payload);
 
       router.push('/');
     } catch(err) {

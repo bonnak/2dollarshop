@@ -1,9 +1,13 @@
+import React, {useContext} from 'react';
 import {
   Navbar, Nav, Container, NavDropdown,
 } from 'react-bootstrap';
 import GlobalSearch from './GlobalSearch';
+import {Context as AuthContext} from '../contexts/AuthContext';
 
 export default function PageHeader() {
+  const {state: auth} = useContext(AuthContext);
+
   return (
     <header className="app-header">
       <Container>
@@ -34,12 +38,20 @@ export default function PageHeader() {
                   Popular Deals
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Item>
-                <Nav.Link href="/users/signin">Sign-in</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="/users/signup">Register</Nav.Link>
-              </Nav.Item>
+              { !auth.authenticated ? (
+                <>
+                  <Nav.Item>
+                    <Nav.Link href="/users/signin">Sign-in</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link href="/users/signup">Register</Nav.Link>
+                  </Nav.Item>
+                </>
+              ) : (
+                <Nav.Item>
+                  <Nav.Link href="/users/profile">{auth.user.name}</Nav.Link>
+                </Nav.Item>
+              ) }
             </Nav>
           </Navbar.Collapse>
         </Navbar>

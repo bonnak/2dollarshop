@@ -19,7 +19,13 @@ module.exports = (router) => {
         __refreshToken: await user.generateRefreshToken(),
       };
 
-      return res.json({ accessToken });
+      return res.json({ 
+        accessToken,
+        user: {
+          name: user.name,
+          email: user.email,
+        }
+      });
     },
   );
 };
