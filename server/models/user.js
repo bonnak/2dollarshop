@@ -43,19 +43,23 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     async generateAccessToken() {
-      const token = jwt.sign(
+      const accessToken = jwt.sign(
         {},
         config.get('auth.jwt.secret'),
-        { expiresIn: '365d', subject: this.id },
+        { expiresIn: '1h', subject: this.id },
       );
 
+      return accessToken;
+    }
+
+    async generateRefreshToken() {
       const refreshToken = await sequelize.models.RefreshToken.create({
         userId: this.id,
         token: randomBytes(100).toString('hex'),
         expiredAt: ms('365d'),
       });
 
-      return { accessToken: token, refreshToken: refreshToken.token };
+      return refreshToken.token;
     }
 
     static async attemptToAuthenticate({ email, password }) {
