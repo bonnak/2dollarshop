@@ -1,35 +1,45 @@
-import { useCallback, useState } from 'react';
-import { useRouter } from 'next/router'
+import {
+  useCallback, useState, useContext, useEffect,
+} from 'react';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import { Errors } from 'form-backend-validation';
 import {
-  Container, Form, Col, Button, Alert
+  Container, Form, Col, Button, Alert,
 } from 'react-bootstrap';
 import AppLayout from '../../layouts/AppLayout';
+import { Context as AuthContext } from '../../contexts/AuthContext';
 
-export default function signup() {
+export default function SignUp() {
   const router = useRouter();
   const [errMessage, setErrMessage] = useState();
-  const [validationErrors, setValidationErrors] = useState(new Errors);
+  const [validationErrors, setValidationErrors] = useState(new Errors());
   const [payload, setPayload] = useState({
-    name: '', email: '', password: '', passwordConfirmation: ''
+    name: '', email: '', password: '', passwordConfirmation: '',
   });
+  const { state, signup } = useContext(AuthContext);
   const register = useCallback(async (e) => {
     e.preventDefault();
     setErrMessage(null);
-    setValidationErrors(new Errors);
+    setValidationErrors(new Errors());
 
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, payload);
+      await signup(payload);
 
       router.push('/users/signin');
-    } catch(err) {
+    } catch (err) {
       const _err = err.response.data;
 
-      if(_err.errors) setValidationErrors(new Errors(_err.errors));
+      if (_err.errors) setValidationErrors(new Errors(_err.errors));
       else setErrMessage(_err.message);
     }
-  }, [payload])
+  }, [payload]);
+
+  useEffect(() => {
+    if (state.authenticated) {
+      router.push('/');
+    }
+  }, [state.authenticated]);
 
   return (
     <AppLayout>
@@ -42,42 +52,42 @@ export default function signup() {
           <Form>
             <Form.Group>
               <Col sm={10}>
-                <Form.Control 
-                  type="text" 
+                <Form.Control
+                  type="text"
                   placeholder="Name"
                   value={payload.name}
-                  onChange={e => setPayload({ ...payload, name: e.target.value })}/>
-                { 
-                  validationErrors.has('name') && 
-                  <span className="text-sm text-danger">{validationErrors.first('name')}</span>
+                  onChange={(e) => setPayload({ ...payload, name: e.target.value })}/>
+                {
+                  validationErrors.has('name')
+                  && <span className="text-sm text-danger">{validationErrors.first('name')}</span>
                 }
               </Col>
             </Form.Group>
 
             <Form.Group>
               <Col sm={10}>
-                <Form.Control 
-                  type="email" 
-                  placeholder="Email" 
-                  value={payload.email} 
-                  onChange={e => setPayload({ ...payload, email: e.target.value })}/>
-                { 
-                  validationErrors.has('email') && 
-                  <span className="text-sm text-danger">{validationErrors.first('email')}</span>
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  value={payload.email}
+                  onChange={(e) => setPayload({ ...payload, email: e.target.value })}/>
+                {
+                  validationErrors.has('email')
+                  && <span className="text-sm text-danger">{validationErrors.first('email')}</span>
                 }
               </Col>
             </Form.Group>
 
             <Form.Group>
               <Col sm={10}>
-                <Form.Control 
-                  type="password" 
-                  placeholder="Password" 
-                  value={payload.password} 
-                  onChange={e => setPayload({ ...payload, password: e.target.value })}/>
-                { 
-                  validationErrors.has('password') && 
-                  <span className="text-sm text-danger">{validationErrors.first('password')}</span>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={payload.password}
+                  onChange={(e) => setPayload({ ...payload, password: e.target.value })}/>
+                {
+                  validationErrors.has('password')
+                  && <span className="text-sm text-danger">{validationErrors.first('password')}</span>
                 }
               </Col>
             </Form.Group>
@@ -87,11 +97,11 @@ export default function signup() {
                 <Form.Control
                   type="password"
                   placeholder="Re-enter Password"
-                  value={payload.passwordConfirmation} 
-                  onChange={e => setPayload({ ...payload, passwordConfirmation: e.target.value })}/>
-                { 
-                  validationErrors.has('passwordConfirmation') && 
-                  <span className="text-sm text-danger">{validationErrors.first('passwordConfirmation')}</span>
+                  value={payload.passwordConfirmation}
+                  onChange={(e) => setPayload({ ...payload, passwordConfirmation: e.target.value })}/>
+                {
+                  validationErrors.has('passwordConfirmation')
+                  && <span className="text-sm text-danger">{validationErrors.first('passwordConfirmation')}</span>
                 }
               </Col>
             </Form.Group>

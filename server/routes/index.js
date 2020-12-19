@@ -4,6 +4,6 @@ const router = express.Router();
 
 require('./register')(router);
 require('./signin')(router);
-// require('./signout')(router);
+require('./auth-user')(router);
 
 module.exports = router;

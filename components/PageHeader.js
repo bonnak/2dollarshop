@@ -1,12 +1,12 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   Navbar, Nav, Container, NavDropdown,
 } from 'react-bootstrap';
 import GlobalSearch from './GlobalSearch';
-import {Context as AuthContext} from '../contexts/AuthContext';
+import { Context as AuthContext } from '../contexts/AuthContext';
 
 export default function PageHeader() {
-  const {state: auth} = useContext(AuthContext);
+  const { state: auth } = useContext(AuthContext);
 
   return (
     <header className="app-header">

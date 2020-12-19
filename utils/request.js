@@ -6,15 +6,13 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config) => {
-    const token = await AsyncStorage.getItem('token');
+    const token = await localStorage.getItem('accessToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  (err) => {
-    return Promise.reject(err);
-  },
+  (err) => Promise.reject(err),
 );
 
 export default instance;

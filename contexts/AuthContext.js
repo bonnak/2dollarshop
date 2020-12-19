@@ -1,4 +1,4 @@
-import {createDataContext} from '.';
+import { createDataContext } from '.';
 import request from '../utils/request';
 
 const authReducer = (prevState, { type, payload }) => {
@@ -11,12 +11,23 @@ const authReducer = (prevState, { type, payload }) => {
         user: {
           name: payload.user.name,
           email: payload.user.email,
-        }
+        },
       };
+
+    case 'SET_USER':
+      return {
+        ...prevState,
+        authenticated: true,
+        user: {
+          name: payload.user.name,
+          email: payload.user.email,
+        },
+      };
+
     case 'SIGN_OUT':
       return {
-        ...prevState, 
-        accessToken: null, 
+        ...prevState,
+        accessToken: null,
         authenticated: false,
         user: null,
       };
@@ -32,17 +43,19 @@ const tryLocalSignin = (dispatch) => async () => {
     return;
   }
 
-  if (await tokenIsValid(accessToken)) {
-    dispatch({type: 'SIGN_IN', payload: {accessToken}});
+  const { user } = await getAuthUser();
+
+  if (user !== undefined) {
+    dispatch({ type: 'SET_USER', payload: { user } });
   } else {
-    dispatch({type: 'SIGN_OUT'});
+    dispatch({ type: 'SIGN_OUT' });
   }
 };
 
-const tokenIsValid = async (accessToken) => {
-  const {data} = await request.post('/api/accesstoken/validate', {accessToken});
+const getAuthUser = async (accessToken) => {
+  const { data } = await request.get('/api/auth/user');
 
-  return data.status === 'ok';
+  return data;
 };
 
 const signup = () => async ({
@@ -50,7 +63,7 @@ const signup = () => async ({
   password,
   passwordConfirmation,
 }) => {
-  const {data} = await request.post('api/auth/register', {
+  const { data } = await request.post('api/auth/register', {
     email,
     password,
     passwordConfirmation,
@@ -59,8 +72,8 @@ const signup = () => async ({
   return data;
 };
 
-const signin = (dispatch) => async ({email, password}) => {
-  const {data} = await request.post('/api/auth/signin', {
+const signin = (dispatch) => async ({ email, password }) => {
+  const { data } = await request.post('/api/auth/signin', {
     email,
     password,
   });
@@ -68,25 +81,25 @@ const signin = (dispatch) => async ({email, password}) => {
   await localStorage.setItem('accessToken', data.accessToken);
 
   dispatch({
-    type: 'SIGN_IN', 
+    type: 'SIGN_IN',
     payload: data,
   });
 };
 
 const signout = (dispatch) => async () => {
   await localStorage.removeItem('accessToken');
-  dispatch({type: 'SIGN_OUT'});
+  dispatch({ type: 'SIGN_OUT' });
 };
 
-const resetPassword = (dispatch) => async (email) => {
-  const {data} = await request.post('/api/auth/reset-password', {
+const resetPassword = () => async (email) => {
+  const { data } = await request.post('/api/auth/reset-password', {
     email,
   });
 
   return data;
 };
 
-export const {Provider, Context} = createDataContext(
+export const { Provider, Context } = createDataContext(
   authReducer,
   {
     signin,
@@ -96,8 +109,8 @@ export const {Provider, Context} = createDataContext(
     resetPassword,
   },
   {
-    accessToken: null, 
-    authenticated: false, 
-    user: null
+    accessToken: null,
+    authenticated: false,
+    user: null,
   },
 );
