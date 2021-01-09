@@ -21,7 +21,7 @@ module.exports = (router) => {
     '/auth/user',
     async (req, res) => {
       try {
-        const token = extractToken(req); console.log(token);
+        const token = extractToken(req);
         const { sub: userId } = jwt.verify(token, config.get('auth.jwt.secret'));
 
         const user = await User.findOne({

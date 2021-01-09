@@ -10,7 +10,7 @@ import {
 import AppLayout from '../../layouts/AppLayout';
 import { Context as AuthContext } from '../../contexts/AuthContext';
 
-export default function SignUp() {
+export default function Register() {
   const router = useRouter();
   const [errMessage, setErrMessage] = useState();
   const [validationErrors, setValidationErrors] = useState(new Errors());
