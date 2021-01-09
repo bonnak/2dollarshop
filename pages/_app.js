@@ -3,6 +3,8 @@ import {
   Provider as AuthProvider,
   Context as AuthContext,
 } from '../contexts/AuthContext';
+import { Provider as CategoryProvider } from '../contexts/CategoryContext';
+
 import '../styles/globals.scss';
 
 function Local() {
@@ -16,10 +18,14 @@ function Local() {
 }
 
 function MyApp({ Component, pageProps }) {
-  return <AuthProvider>
-    <Local />
-    <Component {...pageProps} />;
-  </AuthProvider>;
+  return (
+    <AuthProvider>
+      <Local />
+      <CategoryProvider>
+        <Component {...pageProps} />
+      </CategoryProvider>
+    </AuthProvider>
+  );
 }
 
 export default MyApp;
