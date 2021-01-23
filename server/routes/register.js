@@ -2,7 +2,6 @@ const { body } = require('express-validator');
 const { validateRequest, config } = require('@bonnak/toolset');
 const mailer = require('../transport/mailer');
 const { User } = require('../models').models;
-const { requireAuth } = require('../middleware/authenticate');
 
 module.exports = (router) => {
   router.post(

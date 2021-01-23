@@ -5,18 +5,18 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  
+  }
+
   Category.init({
     name: DataTypes.STRING,
     slug: DataTypes.STRING,
     displayed: DataTypes.BOOLEAN,
-    parentId: DataTypes.INTEGER
+    parentId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Category',
-    paranoid: true
+    paranoid: true,
   });
-  
+
   return Category;
 };

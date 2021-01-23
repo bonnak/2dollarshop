@@ -17,7 +17,7 @@ const categoryReducer = (prevState, { type, payload }) => {
 const fetchCategories = (dispatch) => async () => {
   const { data: { rows } } = await request.get('/api/categories');
   dispatch({ type: 'GET_CATEGORIES', payload: rows });
-}
+};
 
 export const { Provider, Context } = createDataContext(
   categoryReducer,
@@ -25,6 +25,6 @@ export const { Provider, Context } = createDataContext(
     fetchCategories,
   },
   {
-    categories: []
+    categories: [],
   },
 );

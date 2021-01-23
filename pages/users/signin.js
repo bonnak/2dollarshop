@@ -91,10 +91,10 @@ export default function SignIn() {
             <p className="signin__new-users">New users</p>
             <Form.Group>
               <Col className="btn-block__new-account">
-                <Button 
-                  variant="primary" 
-                  size="lg" 
-                  type="button" 
+                <Button
+                  variant="primary"
+                  size="lg"
+                  type="button"
                   onClick={() => router.push('/users/register')}>
                   Create your new account
                 </Button>

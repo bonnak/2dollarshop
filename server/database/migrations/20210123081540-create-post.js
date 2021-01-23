@@ -1,27 +1,23 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Categories', {
+    await queryInterface.createTable('Posts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
       },
-      name: {
+      userId: {
+        type: Sequelize.UUID,
+      },
+      title: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
-      slug: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
+      body: {
+        type: Sequelize.TEXT,
       },
-      displayed: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true,
-      },
-      parentId: {
-        type: Sequelize.INTEGER,
+      tags: {
+        type: Sequelize.JSON,
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('Categories');
+    await queryInterface.dropTable('Posts');
   },
 };
