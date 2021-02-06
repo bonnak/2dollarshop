@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Posts', {
+    await queryInterface.createTable('Deals', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,6 +19,9 @@ module.exports = {
       tags: {
         type: Sequelize.JSON,
       },
+      externalLink: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -33,6 +36,6 @@ module.exports = {
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('Posts');
+    await queryInterface.dropTable('Deals');
   },
 };
