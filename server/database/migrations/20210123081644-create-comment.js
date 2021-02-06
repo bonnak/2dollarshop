@@ -10,7 +10,7 @@ module.exports = {
       userId: {
         type: Sequelize.UUID,
       },
-      postId: {
+      dealId: {
         type: Sequelize.BIGINT,
       },
       body: {
