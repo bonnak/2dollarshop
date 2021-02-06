@@ -1,14 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Nav } from 'react-bootstrap';
 import Link from 'next/link';
 import { Context as CategoryContext } from '../contexts/CategoryContext';
 
 export default function BrowseCategories() {
-  const { state: { categories }, fetchCategories } = useContext(CategoryContext);
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  const { state: { categories } } = useContext(CategoryContext);
 
   return <div className="browse-category">
     <div className="browse-category__row1">

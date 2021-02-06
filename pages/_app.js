@@ -3,15 +3,20 @@ import {
   Provider as AuthProvider,
   Context as AuthContext,
 } from '../contexts/AuthContext';
-import { Provider as CategoryProvider } from '../contexts/CategoryContext';
+import { 
+  Provider as CategoryProvider,
+  Context as CategoryContext,
+} from '../contexts/CategoryContext';
 
 import '../styles/globals.scss';
 
 function Local() {
   const { tryLocalSignin } = useContext(AuthContext);
+  const { fetchCategories } = useContext(CategoryContext);
 
   useEffect(() => {
     tryLocalSignin();
+    fetchCategories();
   }, []);
 
   return <></>;
@@ -20,8 +25,8 @@ function Local() {
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Local />
       <CategoryProvider>
+        <Local />
         <Component {...pageProps} />
       </CategoryProvider>
     </AuthProvider>
