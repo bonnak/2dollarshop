@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Errors } from 'form-backend-validation';
 
-export default function DealForm({ validationErrors, onSubmit }) {
+export default function DealForm({ validationErrors, onSubmit, deal }) {
   const initialPayload = {
     title: '',
     body: '',
@@ -18,6 +18,12 @@ export default function DealForm({ validationErrors, onSubmit }) {
   useEffect(() => {
     if (!validationErrors) setPayload(initialPayload);
   }, [validationErrors]);
+
+  useEffect(() => {
+    if(deal) {
+      setPayload(deal);
+    }
+  }, [deal]);
 
   return (
     <form onSubmit={submitForm}>
