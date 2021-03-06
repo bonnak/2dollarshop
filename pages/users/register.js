@@ -2,7 +2,6 @@ import {
   useCallback, useState, useContext, useEffect,
 } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import { Errors } from 'form-backend-validation';
 import {
   Container, Form, Col, Button, Alert,

@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import request from '../../utils/request';
 import AppLayout from '../../layouts/AppLayout';
-import DealForm from '../../components/deals/DealForm.js';
+import DealForm from '../../components/deals/DealForm';
 
 export default function DealCreatePage() {
   const [validationErrors, setValidationErrors] = useState();

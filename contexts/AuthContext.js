@@ -37,7 +37,7 @@ const authReducer = (prevState, { type, payload }) => {
 };
 
 const tryLocalSignin = (dispatch) => async () => {
-  const accessToken = await localStorage.getItem('accessToken');
+  const accessToken = await window.localStorage.getItem('accessToken');
 
   if (accessToken === null) {
     return;
@@ -52,7 +52,7 @@ const tryLocalSignin = (dispatch) => async () => {
   }
 };
 
-const getAuthUser = async (accessToken) => {
+const getAuthUser = async () => {
   const { data } = await request.get('/api/auth/user');
 
   return data;
@@ -78,7 +78,7 @@ const signin = (dispatch) => async ({ email, password }) => {
     password,
   });
 
-  await localStorage.setItem('accessToken', data.accessToken);
+  await window.localStorage.setItem('accessToken', data.accessToken);
 
   dispatch({
     type: 'SIGN_IN',
@@ -87,7 +87,7 @@ const signin = (dispatch) => async ({ email, password }) => {
 };
 
 const signout = (dispatch) => async () => {
-  await localStorage.removeItem('accessToken');
+  await window.localStorage.removeItem('accessToken');
   dispatch({ type: 'SIGN_OUT' });
 };
 

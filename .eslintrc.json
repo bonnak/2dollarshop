@@ -2,7 +2,8 @@
     "env": {
         "commonjs": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "browser": true
     },
     "plugins": ["react"],
     "extends": [
@@ -25,10 +26,12 @@
         "semi": ["error", "always"],
         "consistent-return": "off",
         "no-restricted-globals": ["error", "event", "fdescribe"],
-        "max-len": ["error", { "code": 150 }],
+        "max-len": ["error", { "code": 600 }],
         "no-underscore-dangle": "off",
         "radix": "off",
         "global-require": "off",
+        "import/prefer-default-export": "off",
+        "no-use-before-define": "off",
 
         //JSX
         "react/prop-types": "off",

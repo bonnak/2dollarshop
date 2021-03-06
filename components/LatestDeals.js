@@ -2,7 +2,7 @@ import { Card } from 'react-bootstrap';
 import Avatar from './Avatar';
 
 function Deal({
-  title, description, image, createdAt, expiredAt, username, avatar, tags,
+  title, description, createdAt, expiredAt, username, avatar, tags,
 }) {
   return <Card className="deal" >
     <div className="deal__sections">

@@ -2,7 +2,7 @@ import { Card } from 'react-bootstrap';
 import Avatar from './Avatar';
 
 export default function Product({
-  title, description, image, createdAt, expiredAt, username, avatar, tags,
+  title, description, createdAt, expiredAt, username, avatar, tags,
 }) {
   return <Card className="product" >
     <div className="product__sections">

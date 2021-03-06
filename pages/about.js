@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Container } from 'react-bootstrap';
 import AppLayout from '../layouts/AppLayout';
 import BrowseCategories from '../components/BrowseCategories';
