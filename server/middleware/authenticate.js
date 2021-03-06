@@ -34,11 +34,10 @@ const requireAuth = () => async (req, res, next) => {
 
     if (user === null) return fnUnAuthorizedReqResponse(res);
 
-    if (!await AccessToken.validate(token)) return fnUnAuthorizedReqResponse(res);
-
-    req.auth = { user, accessToken: token };
+    req.user = user;
     next();
   } catch (err) {
+    console.log(err);
     fnUnAuthorizedReqResponse(res);
   }
 };

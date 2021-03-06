@@ -1,40 +1,57 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Errors } from 'form-backend-validation';
 
-export default function DealForm({ errorsProps }) {
-  const [errors] = useState(new Errors(errorsProps));
-  const [payload, setPayload] = useState({
+export default function DealForm({ validationErrors, onSubmit }) {
+  const initialPayload = {
     title: '',
     body: '',
     tags: [],
-  });
-  const submitForm = useCallback((evt) => {
-    console.log(evt)
-  }, [])
+    externalLink: '',
+  };
+  const [payload, setPayload] = useState(initialPayload);
+  const submitForm = (evt) => {
+    evt.preventDefault();
+    onSubmit(payload);
+  };
+  const errors = new Errors(validationErrors);
+
+  useEffect(() => {
+    if (!validationErrors) setPayload(initialPayload);
+  }, [validationErrors]);
 
   return (
     <form onSubmit={submitForm}>
       <div className="form-group">
         <label className="form-label">Title *</label>
-        <input        
+        <input
           type="text"
           className="form-control"
           value={payload.title}
-          onChange={e => setPayload({...payload, title: e.target.value})}
+          onChange={(e) => setPayload({ ...payload, title: e.target.value })}
         />
-        {errors.has('title') && <small class="text-danger form-text">{error.first('title')}</small>}
+        {errors.has('title') && <small className="text-danger form-text">{errors.first('title')}</small>}
       </div>
       <div className="form-group">
-        <label className="form-label">Title *</label>
+        <label className="form-label">Body *</label>
         <textarea
           type="text"
           className="form-control"
           value={payload.body}
-          onChange={e => setPayload({...payload, body: e.target.value})}
+          onChange={(e) => setPayload({ ...payload, body: e.target.value })}
         ></textarea>
-        {errors.has('body') && <small class="text-danger form-text">{error.first('body')}</small>}
+        {errors.has('body') && <small className="text-danger form-text">{errors.first('body')}</small>}
+      </div>
+      <div className="form-group">
+        <label className="form-label">Link *</label>
+        <input
+          type="text"
+          className="form-control"
+          value={payload.externalLink}
+          onChange={(e) => setPayload({ ...payload, externalLink: e.target.value })}
+        />
+        {errors.has('externalLink') && <small className="text-danger form-text">{errors.first('externalLink')}</small>}
       </div>
       <button type="submit" className="btn btn-primary">Save</button>
     </form>
-  )
+  );
 }

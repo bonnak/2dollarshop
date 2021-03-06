@@ -3,7 +3,7 @@ import {
   Provider as AuthProvider,
   Context as AuthContext,
 } from '../contexts/AuthContext';
-import { 
+import {
   Provider as CategoryProvider,
   Context as CategoryContext,
 } from '../contexts/CategoryContext';

@@ -13,11 +13,11 @@ module.exports = {
         confirmed: true,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
+      },
     ], {});
   },
 
   down: async (queryInterface) => {
     await queryInterface.bulkDelete('Users', null, { truncate: true });
-  }
+  },
 };

@@ -1,87 +1,87 @@
 const { body } = require('express-validator');
 const { validateRequest } = require('@bonnak/toolset');
-const { Post } = require('../models').models;
+const { Deal } = require('../models').models;
 const { requireAuth } = require('../middleware/authenticate');
 
 module.exports = (router) => {
   router.post(
-    '/posts',
+    '/deals',
     requireAuth(),
     validateRequest([
       body('title').notEmpty().withMessage('Required'),
       body('body').notEmpty().withMessage('Required'),
     ]),
     async (req, res) => {
-      const post = await Post.create({
+      const deal = await Deal.create({
         ...req.body,
         userId: req.user.id,
       });
 
-      res.status(201).json(post);
+      res.status(201).json(deal);
     },
   );
 
   router.put(
-    '/posts/:id',
+    '/deals/:id',
     requireAuth(),
     validateRequest([
       body('title').notEmpty().withMessage('Required'),
       body('body').notEmpty().withMessage('Required'),
     ]),
     async (req, res) => {
-      const post = await Post.findOne({
+      const deal = await Deal.findOne({
         where: {
           id: req.params.id,
           userId: req.user.id,
         },
       });
 
-      if (post === null) {
-        return res.status(404).json({ message: "Post doesn't exist" });
+      if (deal === null) {
+        return res.status(404).json({ message: "Deal doesn't exist" });
       }
 
-      res.json(post);
+      res.json(deal);
     },
   );
 
   router.delete(
-    '/posts/:id',
+    '/deals/:id',
     requireAuth(),
     async (req, res) => {
-      const post = await Post.findOne({
+      const deal = await Deal.findOne({
         where: {
           id: req.params.id,
           userId: req.user.id,
         },
       });
 
-      if (post === null) {
-        return res.status(404).json({ message: "Post doesn't exist" });
+      if (deal === null) {
+        return res.status(404).json({ message: "Deal doesn't exist" });
       }
 
-      await post.destroy();
+      await deal.destroy();
 
       res.end();
     },
   );
 
   router.get(
-    '/posts',
+    '/deals',
     async (req, res) => {
-      const { count, rows } = await Post.findAndCountAll();
+      const { count, rows } = await Deal.findAndCountAll();
 
       res.json({ count, rows });
     },
   );
 
   router.get(
-    '/posts/:id',
+    '/deals/:id',
     async (req, res) => {
-      const post = await Post.findOne({
+      const deal = await Deal.findOne({
         where: { id: req.params.id },
       });
 
-      res.json(post);
+      res.json(deal);
     },
   );
 };
