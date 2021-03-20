@@ -1,9 +1,9 @@
 import { useCallback, useState, useEffect } from 'react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { Container } from 'react-bootstrap';
-import request from '../../../utils/request';
-import AppLayout from '../../../layouts/AppLayout';
-import DealForm from '../../../components/deals/DealForm';
+import request from '../../../../utils/request';
+import AppLayout from '../../../../layouts/AppLayout';
+import DealForm from '../../../../components/deals/DealForm';
 
 export default function DealEditPage() {
   const router = useRouter();
@@ -20,9 +20,11 @@ export default function DealEditPage() {
     }
   }, []);
 
-  useEffect(() => {console.log(router)
-    request.get(`/api/deals/${router.query.id}`)
-    .then(({ data }) => setDeal(data))
+  useEffect(() => {
+    console.log(router);
+    request
+      .get(`/api/deals/${router.query.id}`)
+      .then(({ data }) => setDeal(data));
   }, []);
 
   return (

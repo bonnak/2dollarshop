@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "api": "nodemon server",
-    "api-prod": "node server",
-    "dev": "next dev",
+    "api": "nodemon api-server",
+    "api-prod": "node api-server",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --ext .js --ignore-path .gitignore . --fix",
@@ -30,6 +30,7 @@
     "form-backend-validation": "^2.4.0",
     "helmet": "^3.22.1",
     "hpp": "^0.2.3",
+    "http-proxy-middleware": "^1.0.6",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "ms": "^2.1.2",
@@ -53,5 +54,6 @@
     "eslint-plugin-react": "^7.21.2",
     "mailtrap": "^2.0.2",
     "nodemon": "^2.0.4"
-  }
+  },
+  "proxy": "http://localhost:8000"
 }
