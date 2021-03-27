@@ -7,6 +7,7 @@ import {
   Provider as CategoryProvider,
   Context as CategoryContext,
 } from '../contexts/CategoryContext';
+import { Provider as DealProvider } from '../contexts/DealContext';
 
 import '../styles/globals.scss';
 
@@ -26,8 +27,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
       <CategoryProvider>
-        <Local />
-        <Component {...pageProps} />
+        <DealProvider>
+          <Local />
+          <Component {...pageProps} />
+        </DealProvider>
       </CategoryProvider>
     </AuthProvider>
   );

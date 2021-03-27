@@ -1,8 +1,37 @@
-import axios from 'axios';
-import { Container, Table, Breadcrumb } from 'react-bootstrap';
+import { useContext, useState, useEffect } from 'react';
+import {
+  Container,
+  Table,
+  Breadcrumb,
+  Spinner,
+  FormControl,
+  Button,
+} from 'react-bootstrap';
+import Link from 'next/link';
+import moment from 'moment';
 import AppLayout from '../../../layouts/AppLayout';
+import { Context as DealContext } from '../../../contexts/DealContext';
 
-export default function DealsPage({ deals }) {
+export default function DealsPage() {
+  const {
+    state: { deals },
+    fetchDeals,
+  } = useContext(DealContext);
+  const [fetching, setFetching] = useState(false);
+  const fetchAsync = async ({ page, itemsPerPage } = {}) => {
+    setFetching(true);
+
+    try {
+      fetchDeals({ page, itemsPerPage });
+    } catch {}
+
+    setFetching(false);
+  };
+
+  useEffect(() => {
+    fetchAsync();
+  }, []);
+
   return (
     <AppLayout>
       <Container>
@@ -10,48 +39,51 @@ export default function DealsPage({ deals }) {
           <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
           <Breadcrumb.Item active>Deals</Breadcrumb.Item>
         </Breadcrumb>
-
-        <Table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </Table>
+        <div className="d-flex justify-content-between mb-4">
+          <FormControl placeholder="Search ..." className="w-25" />
+          <Link href="create">
+            <Button variant="primary">Add New</Button>
+          </Link>
+        </div>
+        <div className="position-relative">
+          <Table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>External Link</th>
+                <th>Tag</th>
+                <th>Last Updated At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {deals.map((deal) => (
+                <tr key={deal.id}>
+                  <td>{deal.title}</td>
+                  <td>{deal.externalLink}</td>
+                  <td>{deal.tags.join(', ')}</td>
+                  <td>
+                    {moment(deal.updatedAt).format('YYYY-MM-DD HH:mm:ss')}
+                  </td>
+                  <td>
+                    <div className="d-flex">
+                      <Link href={`${deal.id}/edit`}>
+                        <Button variant="outline-primary">Edit</Button>
+                      </Link>
+                      <Button variant="outline-danger ml-2">Delete</Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          {fetching && (
+            <div className="position-absolute d-flex align-items-center justify-content-center top-0 left-0 right-0 bottom-0">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
+        </div>
       </Container>
     </AppLayout>
   );
-}
-
-export async function getServerSideProps() {
-  const { data: deals } = await axios.get('/api/deals');
-  console.log(deals);
-  return {
-    props: {
-      deals,
-    },
-  };
 }
