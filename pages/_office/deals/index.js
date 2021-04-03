@@ -37,7 +37,9 @@ export default function DealsPage() {
       <Container>
         <Breadcrumb>
           <Breadcrumb.Item>
-            <Link href="/">Home</Link>
+            <Link href="/">
+              <span>Home</span>
+            </Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item active>Deals</Breadcrumb.Item>
         </Breadcrumb>
@@ -69,7 +71,7 @@ export default function DealsPage() {
                   </td>
                   <td>
                     <div className="d-flex">
-                      <Link href={`${deal.id}/edit`}>
+                      <Link href={`/_office/deals/${deal.id}/edit`}>
                         <Button variant="outline-primary">Edit</Button>
                       </Link>
                       <Button variant="outline-danger ml-2">Delete</Button>

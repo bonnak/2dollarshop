@@ -34,6 +34,17 @@ const createDeal = () => async ({ title, body, externalLink, tags }) => {
   return deal;
 };
 
+const updateDeal = () => async ({ id, title, body, externalLink, tags }) => {
+  const deal = await request.put(`/api/deals/${id}`, {
+    title,
+    body,
+    externalLink,
+    tags,
+  });
+
+  return deal;
+};
+
 const fetchDeals = (dispatch) => async () => {
   const {
     data: { rows, count },
@@ -41,11 +52,19 @@ const fetchDeals = (dispatch) => async () => {
   dispatch({ type: 'GET_DEALS', payload: { rows, count } });
 };
 
+const fetchDealById = () => async (id) => {
+  const { data: deal } = await request.get(`/api/deals/${id}`);
+
+  return deal;
+};
+
 export const { Provider, Context } = createDataContext(
   reducer,
   {
     createDeal,
+    updateDeal,
     fetchDeals,
+    fetchDealById,
   },
   {
     deals: [],
