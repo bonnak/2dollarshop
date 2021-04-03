@@ -52,7 +52,7 @@ export default function DealsPage() {
                 <th>Title</th>
                 <th>External Link</th>
                 <th>Tag</th>
-                <th>Last Updated At</th>
+                <th className="__whitespace-nowrap">Last Updated At</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -62,7 +62,7 @@ export default function DealsPage() {
                   <td>{deal.title}</td>
                   <td>{deal.externalLink}</td>
                   <td>{deal.tags.join(', ')}</td>
-                  <td>
+                  <td className="__whitespace-nowrap">
                     {moment(deal.updatedAt).format('YYYY-MM-DD HH:mm:ss')}
                   </td>
                   <td>
