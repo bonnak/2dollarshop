@@ -36,12 +36,14 @@ export default function DealsPage() {
     <AppLayout>
       <Container>
         <Breadcrumb>
-          <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link href="/">Home</Link>
+          </Breadcrumb.Item>
           <Breadcrumb.Item active>Deals</Breadcrumb.Item>
         </Breadcrumb>
         <div className="d-flex justify-content-between mb-4">
           <FormControl placeholder="Search ..." className="w-25" />
-          <Link href="create">
+          <Link href="/_office/deals/create">
             <Button variant="primary">Add New</Button>
           </Link>
         </div>
@@ -78,7 +80,7 @@ export default function DealsPage() {
             </tbody>
           </Table>
           {fetching && (
-            <div className="position-absolute d-flex align-items-center justify-content-center top-0 left-0 right-0 bottom-0">
+            <div className="position-absolute d-flex align-items-center justify-content-center __top-0 __left-0 __right-0 __bottom-0">
               <Spinner animation="border" variant="primary" />
             </div>
           )}

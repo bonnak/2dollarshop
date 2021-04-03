@@ -23,6 +23,17 @@ const reducer = produce((draft, { type, payload }) => {
   }
 });
 
+const createDeal = () => async ({ title, body, externalLink, tags }) => {
+  const deal = await request.post('/api/deals', {
+    title,
+    body,
+    externalLink,
+    tags,
+  });
+
+  return deal;
+};
+
 const fetchDeals = (dispatch) => async () => {
   const {
     data: { rows, count },
@@ -33,6 +44,7 @@ const fetchDeals = (dispatch) => async () => {
 export const { Provider, Context } = createDataContext(
   reducer,
   {
+    createDeal,
     fetchDeals,
   },
   {
