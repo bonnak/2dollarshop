@@ -10,9 +10,7 @@ const reducer = produce((draft, { type, payload }) => {
   }
 });
 
-const createDeal = () => async ({
-  title, body, externalLink, tags,
-}) => {
+const createDeal = () => async ({ title, body, externalLink, tags }) => {
   const deal = await request.post('/api/deals', {
     title,
     body,
@@ -23,9 +21,7 @@ const createDeal = () => async ({
   return deal;
 };
 
-const updateDeal = () => async (id, {
-  title, body, externalLink, tags,
-}) => {
+const updateDeal = () => async (id, { title, body, externalLink, tags }) => {
   const deal = await request.put(`/api/deals/${id}`, {
     title,
     body,
@@ -34,6 +30,12 @@ const updateDeal = () => async (id, {
   });
 
   return deal;
+};
+
+const destroyDeal = () => async (id) => {
+  const data = await request.delete(`/api/deals/${id}`);
+
+  return data;
 };
 
 const fetchDeals = (dispatch) => async () => {
@@ -54,11 +56,12 @@ export const { Provider, Context } = createDataContext(
   {
     createDeal,
     updateDeal,
+    destroyDeal,
     fetchDeals,
     fetchDealById,
   },
   {
     deals: [],
     count: 0,
-  },
+  }
 );

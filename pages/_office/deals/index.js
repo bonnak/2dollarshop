@@ -16,6 +16,7 @@ export default function DealsPage() {
   const {
     state: { deals },
     fetchDeals,
+    destroyDeal,
   } = useContext(DealContext);
   const [fetching, setFetching] = useState(false);
   const fetchAsync = async ({ page, itemsPerPage } = {}) => {
@@ -74,7 +75,15 @@ export default function DealsPage() {
                       <Link href={`/_office/deals/${deal.id}/edit`}>
                         <Button variant="outline-primary">Edit</Button>
                       </Link>
-                      <Button variant="outline-danger ml-2">Delete</Button>
+                      <Button
+                        variant="outline-danger ml-2"
+                        onClick={async () => {
+                          await destroyDeal(deal.id);
+                          await fetchDeals();
+                        }}
+                      >
+                        Delete
+                      </Button>
                     </div>
                   </td>
                 </tr>
