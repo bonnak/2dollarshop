@@ -2,19 +2,6 @@ import produce from 'immer';
 import { createDataContext } from '.';
 import request from '../utils/request';
 
-// const reducer = (prevState, { type, payload }) => {
-//   switch (type) {
-//     case 'GET_DEALS':
-//       return {
-//         ...prevState,
-//         deals: payload,
-//       };
-
-//     default:
-//       return prevState;
-//   }
-// };
-
 const reducer = produce((draft, { type, payload }) => {
   switch (type) {
     case 'GET_DEALS':
@@ -34,7 +21,7 @@ const createDeal = () => async ({ title, body, externalLink, tags }) => {
   return deal;
 };
 
-const updateDeal = () => async ({ id, title, body, externalLink, tags }) => {
+const updateDeal = () => async (id, { title, body, externalLink, tags }) => {
   const deal = await request.put(`/api/deals/${id}`, {
     title,
     body,

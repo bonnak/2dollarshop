@@ -40,6 +40,8 @@ module.exports = (router) => {
         return res.status(404).json({ message: "Deal doesn't exist" });
       }
 
+      await deal.update(req.body);
+
       res.json(deal);
     }
   );

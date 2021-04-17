@@ -11,23 +11,27 @@ export default function DealEditPage() {
   const router = useRouter();
   const [deal, setDeal] = useState();
   const [validationErrors, setValidationErrors] = useState();
-  const saveDeal = useCallback(async (payload) => {
-    setValidationErrors();
+  const saveDeal = useCallback(
+    async (payload) => {
+      setValidationErrors();
 
-    try {
-      await updateDeal({ ...payload, id: deal.id });
-      router.replace('/_office/deals');
-    } catch (errRes) {
-      const err = errRes.response.data;
+      try {
+        await updateDeal(router.query.id, payload);
+        router.replace('/_office/deals');
+      } catch (errRes) {
+        const err = errRes.response.data;
 
-      if (err.errors) setValidationErrors(err.errors);
-    }
-  }, []);
+        if (err.errors) setValidationErrors(err.errors);
+      }
+    },
+    [router.query.id]
+  );
 
   useEffect(() => {
-    console.log(router);
-    fetchDealById(router.query.id).then(({ data }) => setDeal(data));
-  }, []);
+    if (router.query.id) {
+      fetchDealById(router.query.id).then((deal) => setDeal(deal));
+    }
+  }, [router.query.id]);
 
   return (
     <AppLayout>

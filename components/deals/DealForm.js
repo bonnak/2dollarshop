@@ -20,7 +20,7 @@ export default function DealForm({ validationErrors, onSubmit, deal }) {
   }, [validationErrors]);
 
   useEffect(() => {
-    if(deal) {
+    if (deal) {
       setPayload(deal);
     }
   }, [deal]);
@@ -35,7 +35,11 @@ export default function DealForm({ validationErrors, onSubmit, deal }) {
           value={payload.title}
           onChange={(e) => setPayload({ ...payload, title: e.target.value })}
         />
-        {errors.has('title') && <small className="text-danger form-text">{errors.first('title')}</small>}
+        {errors.has('title') && (
+          <small className="text-danger form-text">
+            {errors.first('title')}
+          </small>
+        )}
       </div>
       <div className="form-group">
         <label className="form-label">Body *</label>
@@ -45,7 +49,11 @@ export default function DealForm({ validationErrors, onSubmit, deal }) {
           value={payload.body}
           onChange={(e) => setPayload({ ...payload, body: e.target.value })}
         ></textarea>
-        {errors.has('body') && <small className="text-danger form-text">{errors.first('body')}</small>}
+        {errors.has('body') && (
+          <small className="text-danger form-text">
+            {errors.first('body')}
+          </small>
+        )}
       </div>
       <div className="form-group">
         <label className="form-label">Link *</label>
@@ -53,11 +61,19 @@ export default function DealForm({ validationErrors, onSubmit, deal }) {
           type="text"
           className="form-control"
           value={payload.externalLink}
-          onChange={(e) => setPayload({ ...payload, externalLink: e.target.value })}
+          onChange={(e) =>
+            setPayload({ ...payload, externalLink: e.target.value })
+          }
         />
-        {errors.has('externalLink') && <small className="text-danger form-text">{errors.first('externalLink')}</small>}
+        {errors.has('externalLink') && (
+          <small className="text-danger form-text">
+            {errors.first('externalLink')}
+          </small>
+        )}
       </div>
-      <button type="submit" className="btn btn-primary">Save</button>
+      <button type="submit" className="btn btn-primary">
+        Save
+      </button>
     </form>
   );
 }
