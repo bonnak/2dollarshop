@@ -1,11 +1,9 @@
-import {
-  useCallback, useState, useEffect, useContext,
-} from 'react';
+import { useCallback, useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Container, Breadcrumb } from 'react-bootstrap';
 import AppLayout from '../../../../layouts/AppLayout';
-import DealForm from '../../../../components/deals/DealForm';
+import DealForm from '../../../../presenters/deals/DealForm';
 import { Context as DealContext } from '../../../../contexts/DealContext';
 
 export default function DealEditPage() {
@@ -26,7 +24,7 @@ export default function DealEditPage() {
         if (err.errors) setValidationErrors(err.errors);
       }
     },
-    [router.query.id],
+    [router.query.id]
   );
 
   useEffect(() => {

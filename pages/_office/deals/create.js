@@ -3,7 +3,7 @@ import { Container, Breadcrumb } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import AppLayout from '../../../layouts/AppLayout';
-import DealForm from '../../../components/deals/DealForm';
+import DealForm from '../../../presenters/deals/DealForm';
 import { Context as DealContext } from '../../../contexts/DealContext';
 
 export default function DealCreatePage() {
