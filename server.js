@@ -26,15 +26,15 @@ app
       server.use('/api', createProxyMiddleware(apiPaths['/api']));
     }
 
-    server.all('*', (req, res) => {
-      return handle(req, res);
-    });
+    server.all('*', (req, res) => handle(req, res));
 
     server.listen(port, (err) => {
       if (err) throw err;
+      // eslint-disable-next-line no-console
       console.log(`> Ready on http://localhost:${port}`);
     });
   })
   .catch((err) => {
+    // eslint-disable-next-line no-console
     console.log('Error:::::', err);
   });

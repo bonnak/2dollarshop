@@ -61,8 +61,7 @@ export default function DealForm({ validationErrors, onSubmit, deal }) {
           type="text"
           className="form-control"
           value={payload.externalLink}
-          onChange={(e) =>
-            setPayload({ ...payload, externalLink: e.target.value })
+          onChange={(e) => setPayload({ ...payload, externalLink: e.target.value })
           }
         />
         {errors.has('externalLink') && (

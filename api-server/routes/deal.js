@@ -18,7 +18,7 @@ module.exports = (router) => {
       });
 
       res.status(201).json(deal);
-    }
+    },
   );
 
   router.put(
@@ -43,7 +43,7 @@ module.exports = (router) => {
       await deal.update(req.body);
 
       res.json(deal);
-    }
+    },
   );
 
   router.delete('/deals/:id', requireAuth(), async (req, res) => {

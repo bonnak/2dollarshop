@@ -10,7 +10,9 @@ const reducer = produce((draft, { type, payload }) => {
   }
 });
 
-const createDeal = () => async ({ title, body, externalLink, tags }) => {
+const createDeal = () => async ({
+  title, body, externalLink, tags,
+}) => {
   const deal = await request.post('/api/deals', {
     title,
     body,
@@ -21,7 +23,9 @@ const createDeal = () => async ({ title, body, externalLink, tags }) => {
   return deal;
 };
 
-const updateDeal = () => async (id, { title, body, externalLink, tags }) => {
+const updateDeal = () => async (id, {
+  title, body, externalLink, tags,
+}) => {
   const deal = await request.put(`/api/deals/${id}`, {
     title,
     body,
@@ -56,5 +60,5 @@ export const { Provider, Context } = createDataContext(
   {
     deals: [],
     count: 0,
-  }
+  },
 );

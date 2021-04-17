@@ -1,4 +1,6 @@
-import { useCallback, useState, useEffect, useContext } from 'react';
+import {
+  useCallback, useState, useEffect, useContext,
+} from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Container, Breadcrumb } from 'react-bootstrap';
@@ -24,12 +26,12 @@ export default function DealEditPage() {
         if (err.errors) setValidationErrors(err.errors);
       }
     },
-    [router.query.id]
+    [router.query.id],
   );
 
   useEffect(() => {
     if (router.query.id) {
-      fetchDealById(router.query.id).then((deal) => setDeal(deal));
+      fetchDealById(router.query.id).then((data) => setDeal(data));
     }
   }, [router.query.id]);
 
